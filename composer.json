@@ -1,0 +1,33 @@
+{
+    "name": "alexbursak/router",
+    "description": "Basic Router",
+    "type": "Library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Bursak",
+            "email": "alexbursak3@gmail.com"
+        }
+    ],
+
+    "require": {
+        "php": "7.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "ABRouter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ABRouterTest\\": "tests/"
+        }
+    },
+
+    "config": {
+        "bin-dir": "bin"
+    }
+}
