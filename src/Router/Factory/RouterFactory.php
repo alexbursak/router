@@ -13,7 +13,6 @@ use ABRouter\Router\RoutesParser;
 class RouterFactory
 {
     /**
-     *
      * @param $calledUrl
      * @param $routesFilePath
      * @param $projectNamespace

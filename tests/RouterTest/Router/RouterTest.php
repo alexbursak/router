@@ -1,6 +1,7 @@
 <?php
 namespace ABRouterTest\RouterTest\Router;
 
+use ABRouter\Router\Exception\RouterException;
 use ABRouter\Router\Router;
 use ABRouter\Router\Routes;
 use ABRouter\Router\RoutesParser;
@@ -70,15 +71,15 @@ class RouterTest extends BaseTestCase
      *
      * @test
      *
-     * expectedException \RouterTest\Router\Exception\RouterException
+     * @expectedException \ABRouter\Router\Exception\RouterException
      */
     public function RoutesFileException()
     {
-//        $urlCall = 'calc';
-//        $routes = new Routes('');
-//
-//        $router = new Router($urlCall, $routes, $this->projectNamespace);
-//        $router->run();
+        $urlCall = 'calc';
+        $routes = new Routes('');
+
+        $router = new Router($urlCall, $routes, $this->projectNamespace);
+        $router->run();
     }
 
     /**
