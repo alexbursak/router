@@ -132,7 +132,7 @@ class RouterTest extends BaseTestCase
     {
         $router = new Router($this->url, $this->routes, $this->projectNamespace);
 
-        $internalRoute = 'calculator/calculate/param1/param2';
+        $internalRoute = '\\TestApp\\Controller\\::calculator/calculate/param1/param2';
 
         $segments = $this->invokeMethod($router, 'explodeRoute', [$internalRoute]);
 
@@ -142,7 +142,8 @@ class RouterTest extends BaseTestCase
             'parameters' => [
                 'param1',
                 'param2'
-            ]
+            ],
+            'namespace' => '\\TestApp\\Controller\\'
         ];
 
         $this->assertEquals($expected, $segments);
@@ -167,7 +168,7 @@ class RouterTest extends BaseTestCase
 
 
     /**
-     * Test Test for RouterException - routes file error
+     * Test for RouterException - routes file error
      *
      * @test
      *
@@ -187,6 +188,7 @@ class RouterTest extends BaseTestCase
     {
         $router = new Router('router/test', $this->routes, $this->projectNamespace);
         $router->setControllerName('FakeController');
+        $router->setNamespace('\\ABRouterTest\\RouterTest\\Fixtures\\FakeApp\\Controller\\');
 
         $controllerObject = $this->invokeMethod($router, 'generateControllerObject', []);
 

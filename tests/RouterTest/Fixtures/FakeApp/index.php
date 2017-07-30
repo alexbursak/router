@@ -5,8 +5,15 @@ $url = 'fake/alex/qwe123';
 $routes = dirname(__FILE__) . '/../../Router/routes.php';
 $projectName = 'ABRouterTest\RouterTest\Fixtures\FakeApp';
 
+try {
+    $router = \ABRouter\Router\Factory\RouterFactory::create($url, $routes, $projectName);
 
-$router = \ABRouter\Router\Factory\RouterFactory::create($url, $routes, $projectName);
-// return statement here used only for testing purposes
-// in production '$router->run()' will be enough
-return $router->run();
+    // for debugging proposes only
+    echo PHP_EOL . $router->run() . PHP_EOL . PHP_EOL;
+
+    // return statement here used only for testing purposes
+    // in production '$router->run()' will be enough
+    return $router->run();
+}catch(\ABRouter\Router\Exception\RouterException $e){
+    echo PHP_EOL . $e->getMessage() . PHP_EOL;
+}

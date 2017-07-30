@@ -61,39 +61,42 @@ class RoutesParser
      */
     public function parseRoutes()
     {
-        foreach ($this->routesRaw as $url => $routeParams) {
+        foreach ($this->routesRaw as $namespace => $rawRouter) {
 
-            $innerPath = preg_replace('~:~', '/', array_shift($routeParams));
+            foreach ($rawRouter as $url => $routeParams) {
 
-            $paramsQuantity = $this->countParams($url);
+                $innerPath = preg_replace('~:~', '/', array_shift($routeParams));
 
-            foreach ($routeParams as $param => $rule) {
+                $paramsQuantity = $this->countParams($url);
 
-                if (strpos($rule, ':')) {
-                    list($rules['type'], $rules['len']) = explode(':', $rule);
-                } else {
-                    $rules['type'] = $rule;
-                    $rules['len'] = self::PARAM_MAX_LEN;
+                foreach ($routeParams as $param => $rule) {
+
+                    if (strpos($rule, ':')) {
+                        list($rules['type'], $rules['len']) = explode(':', $rule);
+                    } else {
+                        $rules['type'] = $rule;
+                        $rules['len'] = self::PARAM_MAX_LEN;
+                    }
+
+                    if (array_key_exists($rules['type'], self::PARAMETERS)) {
+                        // build parameter regex
+                        $routeParams[$param] = '(' . self::PARAMETERS[$rules['type']] . '{1,' . $rules['len'] . '})';
+
+                        // replace parameter's placeholder in url (e.g. '{param1}') by regex
+                        $url = preg_replace("~{{$param}}~", $routeParams[$param], $url);
+                    }
                 }
 
-                if (array_key_exists($rules['type'], self::PARAMETERS)) {
-                    // build parameter regex
-                    $routeParams[$param] = '(' . self::PARAMETERS[$rules['type']] . '{1,' . $rules['len'] . '})';
+                // replace not configured parameters placeholders by default regex
+                $url = preg_replace(self::FIND_PARAM_REGEX, self::DEFAULT_PARAM_REGEX, $url);
 
-                    // replace parameter's placeholder in url (e.g. '{param1}') by regex
-                    $url = preg_replace("~{{$param}}~", $routeParams[$param], $url);
+                // append inner path with placeholders for each parameter
+                for ($i = 1; $i <= $paramsQuantity; $i++) {
+                    $innerPath .= "/\${$i}";
                 }
+
+                $this->routes[$url] = $namespace . '::' . $innerPath;
             }
-
-            // replace not configured parameters placeholders by default regex
-            $url = preg_replace(self::FIND_PARAM_REGEX, self::DEFAULT_PARAM_REGEX, $url);
-
-            // append inner path with placeholders for each parameter
-            for ($i = 1; $i <= $paramsQuantity; $i++) {
-                $innerPath .= "/\${$i}";
-            }
-
-            $this->routes[$url] = $innerPath;
         }
 
         return $this;
