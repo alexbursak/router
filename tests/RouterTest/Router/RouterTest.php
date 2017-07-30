@@ -5,7 +5,7 @@ use ABRouter\Router\Router;
 use ABRouter\Router\Routes;
 use ABRouter\Router\RoutesParser;
 use ABRouterTest\BaseTestCase;
-use ABRouterTest\RouterTest\Fixtures\Controller\FakeController;
+use ABRouterTest\RouterTest\Fixtures\FakeApp\Controller\FakeController;
 
 /**
  * RouterTest
@@ -26,7 +26,7 @@ class RouterTest extends BaseTestCase
     /**
      * @var string
      */
-    public $projectNamespace = 'ABRouterTest\RouterTest\Fixtures';
+    public $projectNamespace = 'ABRouterTest\RouterTest\Fixtures\FakeApp';
 
     public function setUp()
     {

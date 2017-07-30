@@ -1,6 +1,6 @@
 <?php
 
-namespace ABRouterTest\RouterTest\Fixtures\Controller;
+namespace ABRouterTest\RouterTest\Fixtures\FakeApp\Controller;
 
 /**
  * Fake controller for testing
