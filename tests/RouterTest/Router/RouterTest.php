@@ -63,7 +63,7 @@ class RouterTest extends BaseTestCase
         $router = new Router('fake/param/param2', $this->routes, $this->projectNamespace);
         $result = $router->run();
 
-        $this->assertTrue($result);
+        $this->assertNotEmpty($result);
     }
 
     /**

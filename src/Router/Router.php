@@ -121,13 +121,11 @@ class Router implements RouterInterface
      *
      * @param $controllerObject
      *
-     * @return bool
+     * @return mixed
      */
     private function execute($controllerObject)
     {
-        call_user_func_array([$controllerObject, $this->actionName], $this->parameters);
-
-        return true;
+        return call_user_func_array([$controllerObject, $this->actionName], $this->parameters);
     }
 
     /**
