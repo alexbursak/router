@@ -15,7 +15,7 @@ class RoutesTest extends BaseTestCase
         $this->routes = [
             'calc/([0-9]{1,3})' => 'calculator/test/$1',
             'calc' => 'calculator/calculate',
-            'fake/([a-zA-Z]{1,100})/([0-9a-zA-Z]{1,10})' => 'fake/dummy/$1/$2'
+            'fake/([0-9a-zA-Z]{0,10})/(.{0,500})' => 'fake/dummy/$1/$2'
         ];
     }
 

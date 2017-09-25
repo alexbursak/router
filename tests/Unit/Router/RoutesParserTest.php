@@ -46,7 +46,7 @@ class RoutesParserTest extends BaseTestCase
         $routes = $parser->parseRoutes()->getRoutes();
 
         $expectedRoutes = [
-            'fake/([a-zA-Z]{1,100})/([0-9a-zA-Z]{1,10})' => "\\ABRouterTest\\Fixtures\\FakeApp\\Controller\\::fake/dummy/$1/$2",
+            'fake/([a-zA-Z]{0,500})/(.{0,10})' => "\\ABRouterTest\\Fixtures\\FakeApp\\Controller\\::fake/dummy/$1/$2",
             'test' => "\\ABRouterTest\\Fixtures\\FakeApp\\Controller\\::fake/test"
         ];
 
