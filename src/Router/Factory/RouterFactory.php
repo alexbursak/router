@@ -7,14 +7,11 @@ use ABRouter\Router\Router;
 use ABRouter\Router\Routes;
 use ABRouter\Router\RoutesParser;
 
-/**
- * Class RouterFactory
- */
 class RouterFactory
 {
     /**
-     * @param $calledUrl
-     * @param $routesFilePath
+     * @param string $calledUrl
+     * @param string $routesFilePath
      *
      * @return Router
      */

@@ -43,6 +43,10 @@ class RoutesParser
      */
     private $routes = [];
 
+    /**
+     * @param string $routesPath
+     * @throws RouterException
+     */
     public function __construct($routesPath)
     {
         $this->routesPath = $routesPath;
@@ -121,7 +125,7 @@ class RoutesParser
     /**
      * Finds parameters quantity from url
      *
-     * @param $url
+     * @param string $url
      * @return int
      */
     private function countParams($url)
