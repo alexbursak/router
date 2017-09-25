@@ -1,11 +1,8 @@
 <?php
 
-namespace ABRouter\Router\Type;
+namespace ABRouter\Router\ValueObject;
 
-/**
- * Class RouteType
- */
-class RouteType
+class Route
 {
     /** @var string */
     public $urlPattern;

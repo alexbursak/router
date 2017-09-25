@@ -3,11 +3,11 @@
 namespace ABRouter\Router;
 
 use ABRouter\Router\Exception\RouterException;
-use ABRouter\Router\Type\RouteType;
+use ABRouter\Router\ValueObject\Route;
 
 class Router implements RouterInterface
 {
-    /** @var RouteType[] */
+    /** @var Route[] */
     private $routes;
 
     /** @var string */
