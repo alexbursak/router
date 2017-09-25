@@ -3,10 +3,9 @@ require_once dirname(__FILE__) . './../../../../vendor/autoload.php';
 
 $url = 'fake/alex/qwe123';
 $routes = dirname(__FILE__) . '/../../Router/routes.php';
-$projectName = 'ABRouterTest\RouterTest\Fixtures\FakeApp';
 
 try {
-    $router = \ABRouter\Router\Factory\RouterFactory::create($url, $routes, $projectName);
+    $router = \ABRouter\Router\Factory\RouterFactory::create($url, $routes);
 
     // return statement here used only for testing purposes
     // in production '$router->run()' will be enough

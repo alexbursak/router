@@ -21,11 +21,6 @@ class RouterFactoryTest extends BaseTestCase
      */
     public $routesFileRaw;
 
-    /**
-     * @var string
-     */
-    public $projectNamespace = 'ABRouterTest\RouterTest\Fixtures\FakeApp';
-
     public function setUp()
     {
         $this->routesFileRaw = dirname(__FILE__) . '/routes.php';
@@ -36,7 +31,7 @@ class RouterFactoryTest extends BaseTestCase
      */
     public function RouterBuild()
     {
-        $router = RouterFactory::create($this->url, $this->routesFileRaw, $this->projectNamespace);
+        $router = RouterFactory::create($this->url, $this->routesFileRaw);
         $this->assertInstanceOf(Router::class, $router);
     }
 }
