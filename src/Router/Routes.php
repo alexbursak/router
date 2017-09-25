@@ -4,7 +4,7 @@ namespace ABRouter\Router;
 
 use ABRouter\ArrayCollection\ArrayCollection;
 use ABRouter\Router\Exception\RouterException;
-use ABRouter\Router\Type\RouteType;
+use ABRouter\Router\ValueObject\Route;
 
 class Routes implements RoutesInterface
 {
@@ -36,7 +36,7 @@ class Routes implements RoutesInterface
     private function setupRoutes()
     {
         foreach ($this->routesRaw as $urlPattern => $innerPath) {
-            $route = new RouteType($urlPattern, $innerPath);
+            $route = new Route($urlPattern, $innerPath);
             $this->routesCollection->addElement($route);
         }
     }
