@@ -99,7 +99,8 @@ class RoutesParser
                     $innerPath .= "/\${$i}";
                 }
 
-                $this->routes[$url] = $namespace . '::' . $innerPath;
+                // TODO: check for slashes if they are already exists (at the beginning of namespace and at the end)
+                $this->routes[$url] = '\\' . $namespace . '\\' . '::' . $innerPath;
             }
         }
 
