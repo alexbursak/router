@@ -12,3 +12,6 @@
 - go through phpdoc and refactor where it is needed
 - implement "Router Interface" with intuitive "addRoute", "getRoutes" methods (for others)
 - change index.php so it can accept arguments (url, file path) to improve functional testing
+- implement routes names for better routes management
+- introduce yaml driver for routes
+- introduce xml driver for routes (?)
