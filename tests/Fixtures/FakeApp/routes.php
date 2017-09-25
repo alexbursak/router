@@ -1,7 +1,7 @@
 <?php
 
 return [
-    '\ABRouterTest\RouterTest\Fixtures\FakeApp\Controller\\' => [
+    '\ABRouterTest\Fixtures\FakeApp\Controller\\' => [
         'fake/{param1}/{param2}' => [
             'fake:dummy',
             'param1' => 'STR',

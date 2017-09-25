@@ -1,18 +1,14 @@
 <?php
-namespace ABRouterTest\RouterTest\Router;
+namespace ABRouterTest\Unit\Router;
 
 use ABRouter\Router\Factory\RouterFactory;
 use ABRouter\Router\Router;
 use ABRouter\Router\Routes;
-use ABRouter\Router\RoutesParser;
 use ABRouterTest\BaseTestCase;
-use ABRouterTest\RouterTest\Fixtures\FakeApp\Controller\FakeController;
 
 class RouterFactoryTest extends BaseTestCase
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public $url = 'calc';
 
     /**
@@ -23,7 +19,7 @@ class RouterFactoryTest extends BaseTestCase
 
     public function setUp()
     {
-        $this->routesFileRaw = dirname(__FILE__) . '/routes.php';
+        $this->routesFileRaw = $this->getRoutesFilePath();
     }
 
     /**

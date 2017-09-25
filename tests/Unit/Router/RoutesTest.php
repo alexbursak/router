@@ -1,14 +1,13 @@
 <?php
-namespace ABRouterTest\RouterTest\Router;
+namespace ABRouterTest\Unit\Router;
+
 
 use ABRouter\Router\Routes;
 use ABRouterTest\BaseTestCase;
 
-/**
- * RoutesTest
- */
 class RoutesTest extends BaseTestCase
 {
+    /** @var array */
     private $routes;
 
     public function setUp()
