@@ -3,44 +3,35 @@
 namespace ABRouter\Router;
 
 use ABRouter\Router\Exception\RouterException;
+use ABRouter\Router\Type\RouteType;
 
 class Router implements RouterInterface
 {
-    /**
-     * @var array
-     */
+    /** @var RouteType[] */
     private $routes;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $url;
 
-    /**
-     * @var
-     */
+    /** @var string */
     private $internalRoute;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $namespace = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $controllerName;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $actionName;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $parameters;
 
+    /**
+     * @param string $url
+     * @param RoutesInterface $routes
+     */
     public function __construct($url, RoutesInterface $routes)
     {
         $this->url = $this->cleanUpUrl($url);
@@ -89,7 +80,6 @@ class Router implements RouterInterface
         throw new RouterException('Route Not Found');
     }
 
-
     /**
      * If Url matches a pattern it replaces inner path parameters' pace holders by url parameters
      *
@@ -100,8 +90,8 @@ class Router implements RouterInterface
      *
      * internal route - 'calculator/calculate/param1'
      *
-     * @param $urlPattern
-     * @param $innerPath
+     * @param string $urlPattern
+     * @param string $innerPath
      *
      * @return string
      */
@@ -115,7 +105,7 @@ class Router implements RouterInterface
     /**
      * Calls Controller's action and passing parameters for the action if any
      *
-     * @param $controllerObject
+     * @param object $controllerObject
      *
      * @return mixed
      */
@@ -127,7 +117,7 @@ class Router implements RouterInterface
     /**
      * Separates url from GET parameters passed and returns url part only
      *
-     * @param $url
+     * @param string $url
      *
      * @return mixed
      */

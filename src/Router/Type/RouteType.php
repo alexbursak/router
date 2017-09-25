@@ -7,16 +7,16 @@ namespace ABRouter\Router\Type;
  */
 class RouteType
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public $urlPattern;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $innerPath;
 
+    /**
+     * @param string $urlPattern
+     * @param string $innerPath
+     */
     public function __construct($urlPattern, $innerPath)
     {
         $this->urlPattern = $urlPattern;;

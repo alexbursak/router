@@ -6,21 +6,18 @@ use ABRouter\ArrayCollection\ArrayCollection;
 use ABRouter\Router\Exception\RouterException;
 use ABRouter\Router\Type\RouteType;
 
-/**
- * Class Routes
- */
 class Routes implements RoutesInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $routesRaw;
 
-    /**
-     * @var ArrayCollection
-     */
+    /** @var ArrayCollection */
     private $routesCollection;
 
+    /**
+     * @param array $routes
+     * @throws RouterException
+     */
     public function __construct($routes)
     {
         $this->routesCollection = new ArrayCollection();
