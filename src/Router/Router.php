@@ -29,6 +29,11 @@ class Router implements RouterInterface
     /**
      * @var string
      */
+    private $namespace = '';
+
+    /**
+     * @var string
+     */
     private $controllerName;
 
     /**
@@ -77,11 +82,12 @@ class Router implements RouterInterface
     {
         foreach ($this->routes as $key => $route) {
 
-            // consider using 'continie' guiadian
+            // consider using 'continue' guardian
             if (preg_match("~^$route->urlPattern$~", $this->url)) {
                 $internalRoute = $this->generateInternalRoute($route->urlPattern, $route->innerPath);
                 $routeSegments = $this->explodeRoute($internalRoute);
 
+                $this->setNamespace($routeSegments['namespace']);
                 $this->setControllerName($routeSegments['controllerName']);
                 $this->setActionName($routeSegments['actionName']);
                 $this->setParameters($routeSegments['parameters']);
@@ -121,13 +127,11 @@ class Router implements RouterInterface
      *
      * @param $controllerObject
      *
-     * @return bool
+     * @return mixed
      */
     private function execute($controllerObject)
     {
-        call_user_func_array([$controllerObject, $this->actionName], $this->parameters);
-
-        return true;
+        return call_user_func_array([$controllerObject, $this->actionName], $this->parameters);
     }
 
     /**
@@ -167,7 +171,12 @@ class Router implements RouterInterface
      */
     private function explodeRoute($route)
     {
-        $routeSegmentsRaw = explode('/', $route);
+        // extract namespace
+        $routeSegmentsRaw = explode('::', $route);
+        $routeSegments['namespace'] = $routeSegmentsRaw[0];
+
+        // extract rest (controller name, action name and parameters)
+        $routeSegmentsRaw = explode('/', $routeSegmentsRaw[1]);
 
         $routeSegments['controllerName'] = ucfirst($routeSegmentsRaw[0]) . 'Controller';
         $routeSegments['actionName'] = $routeSegmentsRaw[1] . 'Action';
@@ -185,7 +194,7 @@ class Router implements RouterInterface
      */
     private function generateControllerObject()
     {
-        $controllerObjectPath = '\\' . $this->projectNamespace . '\Controller\\' . $this->controllerName;
+        $controllerObjectPath = $this->getNamespace() . $this->controllerName;
 
         if (!class_exists($controllerObjectPath)) {
             throw new RouterException("Controller '{$controllerObjectPath}' Not Found");
@@ -284,5 +293,24 @@ class Router implements RouterInterface
     public function getInternalRoute()
     {
         return $this->internalRoute;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNamespace()
+    {
+        return $this->namespace;
+    }
+
+    /**
+     * @param string $namespace
+     * @return $this
+     */
+    public function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
+
+        return $this;
     }
 }
