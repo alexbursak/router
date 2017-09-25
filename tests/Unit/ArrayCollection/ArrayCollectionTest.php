@@ -1,18 +1,13 @@
 <?php
-namespace ABRouterTest\RouterTest\ArrayCollection;
+namespace ABRouterTest\Unit\ArrayCollection;
 
 
 use ABRouter\ArrayCollection\ArrayCollection;
 use ABRouterTest\BaseTestCase;
 
-/**
- * ArrayCollectionTest
- */
 class ArrayCollectionTest extends BaseTestCase
 {
-    /**
-     * @var ArrayCollection
-     */
+    /** @var ArrayCollection */
     public $collection;
 
     /**

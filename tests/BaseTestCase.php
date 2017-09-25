@@ -21,4 +21,12 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
 
         return $method->invokeArgs($object, $parameters);
     }
+
+    /**
+     * @return string
+     */
+    protected function getRoutesFilePath()
+    {
+        return dirname(__FILE__) . '/Fixtures/FakeApp/routes.php';
+    }
 }

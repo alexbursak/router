@@ -1,19 +1,18 @@
 <?php
-namespace ABRouterTest\RouterTest\Router;
+namespace ABRouterTest\Unit\Router;
+
 
 use ABRouter\Router\RoutesParser;
 use ABRouterTest\BaseTestCase;
 
-/**
- * RoutesParserTest
- */
 class RoutesParserTest extends BaseTestCase
 {
+    /** @var string */
     private $routesPath;
 
     public function setUp()
     {
-        $this->routesPath = dirname(__FILE__) . '/routes.php';
+        $this->routesPath = $this->getRoutesFilePath();
     }
 
     /**
@@ -47,8 +46,8 @@ class RoutesParserTest extends BaseTestCase
         $routes = $parser->parseRoutes()->getRoutes();
 
         $expectedRoutes = [
-            'fake/([a-zA-Z]{1,100})/([0-9a-zA-Z]{1,10})' => "\\ABRouterTest\\RouterTest\\Fixtures\\FakeApp\\Controller\\::fake/dummy/$1/$2",
-            'test' => "\\ABRouterTest\\RouterTest\\Fixtures\\FakeApp\\Controller\\::fake/test"
+            'fake/([a-zA-Z]{1,100})/([0-9a-zA-Z]{1,10})' => "\\ABRouterTest\\Fixtures\\FakeApp\\Controller\\::fake/dummy/$1/$2",
+            'test' => "\\ABRouterTest\\Fixtures\\FakeApp\\Controller\\::fake/test"
         ];
 
         $this->assertEquals($expectedRoutes, $routes);

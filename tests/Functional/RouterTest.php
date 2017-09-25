@@ -10,7 +10,7 @@ class RouterTest extends BaseTestCase
      */
     public function Router()
     {
-        $fileIndex = dirname(__FILE__) . './../RouterTest/Fixtures/FakeApp/index.php';
+        $fileIndex = dirname(__FILE__) . './../Fixtures/FakeApp/index.php';
         $response = include $fileIndex;
 
         $this->assertRegExp('/FakeDummyController:dummyAction/', $response);

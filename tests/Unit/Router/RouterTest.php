@@ -1,32 +1,24 @@
 <?php
-namespace ABRouterTest\RouterTest\Router;
+namespace ABRouterTest\Unit\Router;
 
-use ABRouter\Router\Exception\RouterException;
+
 use ABRouter\Router\Router;
 use ABRouter\Router\Routes;
 use ABRouter\Router\RoutesParser;
 use ABRouterTest\BaseTestCase;
-use ABRouterTest\RouterTest\Fixtures\FakeApp\Controller\FakeController;
+use ABRouterTest\Fixtures\FakeApp\Controller\FakeController;
 
-/**
- * RouterTest
- */
 class RouterTest extends BaseTestCase
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public $url = 'calc';
 
-    /**
-     *
-     * @var Routes
-     */
+    /** @var Routes */
     public $routes;
 
     public function setUp()
     {
-        $routesParser = new RoutesParser(dirname(__FILE__) . '/routes.php');
+        $routesParser = new RoutesParser($this->getRoutesFilePath());
         $routes = $routesParser->parseRoutes()->getRoutes();
 
         $this->routes = new Routes($routes);
@@ -166,7 +158,7 @@ class RouterTest extends BaseTestCase
     {
         $router = new Router('router/test', $this->routes);
         $router->setControllerName('FakeController');
-        $router->setNamespace('\\ABRouterTest\\RouterTest\\Fixtures\\FakeApp\\Controller\\');
+        $router->setNamespace('\\ABRouterTest\\Fixtures\\FakeApp\\Controller\\');
 
         $controllerObject = $this->invokeMethod($router, 'generateControllerObject', []);
 
