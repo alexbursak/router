@@ -8,9 +8,6 @@ $projectName = 'ABRouterTest\RouterTest\Fixtures\FakeApp';
 try {
     $router = \ABRouter\Router\Factory\RouterFactory::create($url, $routes, $projectName);
 
-    // for debugging proposes only
-    echo PHP_EOL . $router->run() . PHP_EOL . PHP_EOL;
-
     // return statement here used only for testing purposes
     // in production '$router->run()' will be enough
     return $router->run();
