@@ -15,18 +15,17 @@ class RouterFactory
     /**
      * @param $calledUrl
      * @param $routesFilePath
-     * @param $projectNamespace
      *
      * @return Router
      */
-    public static function create($calledUrl, $routesFilePath, $projectNamespace)
+    public static function create($calledUrl, $routesFilePath)
     {
         $routesParser = new RoutesParser($routesFilePath);
         $routes = $routesParser->parseRoutes()->getRoutes();
 
         $routesCollection = new Routes($routes);
 
-        $router = new Router($calledUrl, $routesCollection, $projectNamespace);
+        $router = new Router($calledUrl, $routesCollection);
 
         return $router;
     }

@@ -24,11 +24,6 @@ class RouterTest extends BaseTestCase
      */
     public $routes;
 
-    /**
-     * @var string
-     */
-    public $projectNamespace = 'ABRouterTest\RouterTest\Fixtures\FakeApp';
-
     public function setUp()
     {
         $routesParser = new RoutesParser(dirname(__FILE__) . '/routes.php');
@@ -46,11 +41,10 @@ class RouterTest extends BaseTestCase
     {
         $urlCall = 'calc';
 
-        $router = new Router($urlCall, $this->routes, $this->projectNamespace);
+        $router = new Router($urlCall, $this->routes);
         $this->assertInstanceOf(Router::class, $router);
         $this->assertEquals('calc', $router->getUrl());
         $this->assertEquals($this->routes->getRoutesCollection(), $router->getRoutes());
-        $this->assertEquals($this->projectNamespace, $router->getProjectNamespace());
     }
 
     /**
@@ -60,7 +54,7 @@ class RouterTest extends BaseTestCase
      */
     public function RouterSuccessfulResponse()
     {
-        $router = new Router('fake/param/param2', $this->routes, $this->projectNamespace);
+        $router = new Router('fake/param/param2', $this->routes);
         $result = $router->run();
 
         $this->assertNotEmpty($result);
@@ -78,7 +72,7 @@ class RouterTest extends BaseTestCase
         $urlCall = 'calc';
         $routes = new Routes('');
 
-        $router = new Router($urlCall, $routes, $this->projectNamespace);
+        $router = new Router($urlCall, $routes);
         $router->run();
     }
 
@@ -93,23 +87,7 @@ class RouterTest extends BaseTestCase
     {
         $urlCall = 'calc/not/existing/url/';
 
-        $router = new Router($urlCall, $this->routes, $this->projectNamespace);
-        $router->run();
-    }
-
-    /**
-     * Test for RouterException - project name error
-     *
-     * @test
-     *
-     * @expectedException \ABRouter\Router\Exception\RouterException
-     */
-    public function ProjectNameException()
-    {
-        $urlCall = 'calc';
-        $projectName = '';
-
-        $router = new Router($urlCall, $this->routes, $projectName);
+        $router = new Router($urlCall, $this->routes);
         $router->run();
     }
 
@@ -118,7 +96,7 @@ class RouterTest extends BaseTestCase
      */
     public function cleanUpUrlMethod()
     {
-        $router = new Router('foo/bar?test=what&excluded=yes', $this->routes, $this->projectNamespace);
+        $router = new Router('foo/bar?test=what&excluded=yes', $this->routes);
 
         $clearUrl = $this->invokeMethod($router, 'cleanUpUrl', ['foo/bar?test=what&excluded=yes']);
 
@@ -130,7 +108,7 @@ class RouterTest extends BaseTestCase
      */
     public function explodeRouteMethod()
     {
-        $router = new Router($this->url, $this->routes, $this->projectNamespace);
+        $router = new Router($this->url, $this->routes);
 
         $internalRoute = '\\TestApp\\Controller\\::calculator/calculate/param1/param2';
 
@@ -154,7 +132,7 @@ class RouterTest extends BaseTestCase
      */
     public function generateInternalRouteMethod()
     {
-        $router = new Router('calculator/test/param1', $this->routes, $this->projectNamespace);
+        $router = new Router('calculator/test/param1', $this->routes);
 
         $urlPattern = 'calc/([0-9a-zA-Z]+)';
         $innerPath = 'calculator/test/$1';
@@ -176,7 +154,7 @@ class RouterTest extends BaseTestCase
      */
     public function generateControllerObjectMethodException()
     {
-        $router = new Router('router/test', $this->routes, $this->projectNamespace);
+        $router = new Router('router/test', $this->routes);
 
         $this->invokeMethod($router, 'generateControllerObject', []);
     }
@@ -186,7 +164,7 @@ class RouterTest extends BaseTestCase
      */
     public function generateControllerObjectMethod()
     {
-        $router = new Router('router/test', $this->routes, $this->projectNamespace);
+        $router = new Router('router/test', $this->routes);
         $router->setControllerName('FakeController');
         $router->setNamespace('\\ABRouterTest\\RouterTest\\Fixtures\\FakeApp\\Controller\\');
 
@@ -200,7 +178,7 @@ class RouterTest extends BaseTestCase
      */
     public function setControllerNameMethod()
     {
-        $router = new Router('router/test', $this->routes, $this->projectNamespace);
+        $router = new Router('router/test', $this->routes);
         $router->setControllerName('FakeController');
 
         $this->assertEquals($router->getControllerName(), 'FakeController');
@@ -211,7 +189,7 @@ class RouterTest extends BaseTestCase
      */
     public function setActionNameMethod()
     {
-        $router = new Router('router/test', $this->routes, $this->projectNamespace);
+        $router = new Router('router/test', $this->routes);
         $router->setActionName('testAction');
 
         $this->assertEquals($router->getActionName(), 'testAction');
@@ -222,7 +200,7 @@ class RouterTest extends BaseTestCase
      */
     public function setParametersMethod()
     {
-        $router = new Router('router/test', $this->routes, $this->projectNamespace);
+        $router = new Router('router/test', $this->routes);
 
         $parameters = [
             'param1',

@@ -24,11 +24,6 @@ class Router implements RouterInterface
     /**
      * @var string
      */
-    private $projectNamespace;
-
-    /**
-     * @var string
-     */
     private $namespace = '';
 
     /**
@@ -46,11 +41,10 @@ class Router implements RouterInterface
      */
     private $parameters;
 
-    public function __construct($url, RoutesInterface $routes, $projectNamespace)
+    public function __construct($url, RoutesInterface $routes)
     {
         $this->url = $this->cleanUpUrl($url);
         $this->routes = $routes->getRoutesCollection();
-        $this->projectNamespace = $projectNamespace;
     }
 
     /**
@@ -62,10 +56,6 @@ class Router implements RouterInterface
      */
     public function run()
     {
-        if (empty($this->projectNamespace)) {
-            throw new RouterException('Project Name Exception');
-        }
-
         $this->findRoute();
 
         return $this->execute($this->generateControllerObject());
@@ -277,14 +267,6 @@ class Router implements RouterInterface
     public function getUrl()
     {
         return $this->url;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProjectNamespace()
-    {
-        return $this->projectNamespace;
     }
 
     /**
