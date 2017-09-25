@@ -55,6 +55,8 @@ class Router implements RouterInterface
     /**
      * Going though all routes and finds first matching route
      *
+     * TODO: this needs to be refactored. may be should be split in to few methods
+     *
      * @throws RouterException
      *
      * @return bool
@@ -63,11 +65,12 @@ class Router implements RouterInterface
     {
         foreach ($this->routes as $key => $route) {
 
-            // consider using 'continue' guardian
+            // TODO: consider using 'continue' guardian
             if (preg_match("~^$route->urlPattern$~", $this->url)) {
                 $internalRoute = $this->generateInternalRoute($route->urlPattern, $route->innerPath);
                 $routeSegments = $this->explodeRoute($internalRoute);
 
+                // TODO: chain?
                 $this->setNamespace($routeSegments['namespace']);
                 $this->setControllerName($routeSegments['controllerName']);
                 $this->setActionName($routeSegments['actionName']);
@@ -123,7 +126,7 @@ class Router implements RouterInterface
      */
     private function cleanUpUrl($url)
     {
-        // RegExp instead
+        // TODO: RegExp instead would be better
         $url = explode('?', $url);
         $cleanUrl = array_shift($url);
 
@@ -132,6 +135,8 @@ class Router implements RouterInterface
 
     /**
      * Explode internal route in to array and generates valid Controller and Action names
+     *
+     * TODO: amend example
      *
      * @example:
      * internal route - 'calculator/calculate/param1/param2'
@@ -166,8 +171,6 @@ class Router implements RouterInterface
     }
 
     /**
-     * Generates object of Controller
-     *
      * @throws RouterException
      *
      * @return object

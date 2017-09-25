@@ -8,18 +8,20 @@ class RoutesParser
 {
     const INT = '[0-9]';
     const STR = '[a-zA-Z]';
-    const MIX = '[0-9a-zA-Z]';
+    const INT_STR = '[0-9a-zA-Z]';
+    const MIX = '.';
 
-    const PARAM_MAX_LEN = '100';
+    const PARAM_MAX_LEN = '500';
 
     const FIND_PARAM_REGEX = '~{([^,]+?)}~s';
 
-    const DEFAULT_PARAM_REGEX = '(' . self::MIX . '{1,' . self::PARAM_MAX_LEN . '})';
+    const DEFAULT_PARAM_REGEX = '(' . self::MIX . '{0,' . self::PARAM_MAX_LEN . '})';
 
     const PARAMETERS = [
         'INT' => self::INT,
         'STR' => self::STR,
-        'MIX' => self::MIX
+        'MIX' => self::MIX,
+        'INT_STR' => self::INT_STR
     ];
 
     /**
@@ -60,6 +62,7 @@ class RoutesParser
 
     /**
      * Transforms routes configuration file to Router readable format
+     * TODO: this method have to be refactored, simplify for readability (looks like magic now even to myself :( )
      *
      * @return $this
      */
@@ -84,16 +87,20 @@ class RoutesParser
 
                     if (array_key_exists($rules['type'], self::PARAMETERS)) {
                         // build parameter regex
-                        $routeParams[$param] = '(' . self::PARAMETERS[$rules['type']] . '{1,' . $rules['len'] . '})';
+                        $routeParams[$param] = '(' . self::PARAMETERS[$rules['type']] . '{0,' . $rules['len'] . '})';
 
                         // replace parameter's placeholder in url (e.g. '{param1}') by regex
                         $url = preg_replace("~{{$param}}~", $routeParams[$param], $url);
-                    }
+                    } // TODO: else throw exception
                 }
 
                 // replace not configured parameters placeholders by default regex
                 $url = preg_replace(self::FIND_PARAM_REGEX, self::DEFAULT_PARAM_REGEX, $url);
 
+                // TODO:
+                // this is not flexible, appends only at the end. Have to be flexible enough to replace parameters
+                // in the middle of url
+                //
                 // append inner path with placeholders for each parameter
                 for ($i = 1; $i <= $paramsQuantity; $i++) {
                     $innerPath .= "/\${$i}";

@@ -1,0 +1,14 @@
+- implement caching system for better performance
+- refactor parseRoutes in RoutesParser
+- change routes config file structure (make more readable)
+- introduce value objects instead of primitives
+- remove interfaces. (useless, I am not using them anyway)
+- refactor and/or add more good unit tests. Some tests are useless. (not all cases covered)
+- add more functional tests (more rotes cases, controllers etc.)
+- prepare simple demo on heroku
+- implement simple CI (github plugin?)
+- refactor 'cleanUpUrl' method (see comments)
+- refactor findRoute (see comments)
+- go through phpdoc and refactor where it is needed
+- implement "Router Interface" with intuitive "addRoute", "getRoutes" methods (for others)
+- change index.php so it can accept arguments (url, file path) to improve functional testing
