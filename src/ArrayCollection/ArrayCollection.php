@@ -2,10 +2,8 @@
 
 namespace ABRouter\ArrayCollection;
 
-/**
- * Class ArrayCollection
- */
-class ArrayCollection implements ArrayCollectionInterface
+
+class ArrayCollection
 {
     /** @var array */
     public $elements = [];
