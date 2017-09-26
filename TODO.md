@@ -14,7 +14,9 @@
 14 - change index.php so it can accept arguments (url, file path) to improve functional testing  
 15 - implement routes names for better routes management  
 16 - introduce yaml driver for routes   
-17 - introduce xml driver for routes (?)    
+17 - introduce xml driver for routes (?) 
+19 - introduce url fragmentation (protocol, domain, host name, second and top domain levels and etc.)   
+
 
 ## DONE:
 5 - remove interfaces. (useless, I am not using them anyway) 
