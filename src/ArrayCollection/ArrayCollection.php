@@ -15,7 +15,7 @@ class ArrayCollection
      */
     public function addElement($element)
     {
-        array_push($this->elements, $element);
+        $this->elements[] = $element;
 
         return $this;
     }
@@ -28,7 +28,7 @@ class ArrayCollection
     public function addElements(array $elements)
     {
         foreach ($elements as $element) {
-            array_push($this->elements, $element);
+            $this->elements[] = $element;
         }
 
         return $this;
