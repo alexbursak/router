@@ -5,7 +5,7 @@ namespace ABRouter\Router;
 use ABRouter\Router\Exception\RouterException;
 use ABRouter\Router\ValueObject\Route;
 
-class Router implements RouterInterface
+class Router
 {
     /** @var Route[] */
     private $routes;
