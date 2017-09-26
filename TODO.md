@@ -15,11 +15,11 @@
 16 - introduce yaml driver for routes   
 17 - introduce xml driver for routes (?) 
 19 - introduce url fragmentation (protocol, domain, host name, second and top domain levels and etc.)   
-
+20 - improve and cleanup circle CI config  
 
 ## IN PROGRESS:
-9 - implement simple CI (github plugin?)  
 
 ## DONE:
-5 - remove interfaces. (useless, I am not using them anyway) 
-18 - refactor ArrayCollection class
+5 - remove interfaces. (useless, I am not using them anyway)    
+18 - refactor ArrayCollection class    
+9 - implement simple CI (github plugin?)   
