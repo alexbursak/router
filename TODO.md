@@ -15,9 +15,9 @@
 16 - introduce yaml driver for routes   
 17 - introduce xml driver for routes (?)   
 19 - introduce url fragmentation (protocol, domain, host name, second and top domain levels and etc.)   
-20 - improve and cleanup circle CI config  
 
 ## IN PROGRESS:
+20 - improve and cleanup circle CI config     
 
 ## DONE:
 5 - remove interfaces. (useless, I am not using them anyway)    
