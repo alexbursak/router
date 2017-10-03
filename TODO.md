@@ -17,9 +17,10 @@
 19 - introduce url fragmentation (protocol, domain, host name, second and top domain levels and etc.)   
 
 ## IN PROGRESS:
-20 - improve and cleanup circle CI config     
+ 
 
 ## DONE:
 5 - remove interfaces. (useless, I am not using them anyway)    
 18 - refactor ArrayCollection class    
 9 - implement simple CI (github plugin?)   
+20 - improve and cleanup circle CI config    
